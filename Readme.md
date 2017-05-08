@@ -14,7 +14,7 @@ git clone https://github.com/yasutomo57jp/alcon2017prmu
 Dockerfileのあるディレクトリで以下のコマンドを実行
 
 ```bash
-sudo docker build -t alcon .
+sudo docker build -t alcon -f Dockerfile .
 ```
 
 少し時間がかかりますが，環境が構築されます．
