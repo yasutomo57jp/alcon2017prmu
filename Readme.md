@@ -9,12 +9,24 @@
 git clone https://github.com/yasutomo57jp/alcon2017prmu
 ```
 
-## コンテナの作成
+## コンテナの作成（GPUなし版）
 
 Dockerfileのあるディレクトリで以下のコマンドを実行
 
 ```bash
 sudo docker build -t alcon -f Dockerfile .
+```
+
+少し時間がかかりますが，環境が構築されます．
+
+## コンテナの作成（GPUあり版）
+
+GPUが刺さった計算機の場合，こちらを実行すると，GPUを利用した計算が可能になります．
+
+Dockerfileのあるディレクトリで以下のコマンドを実行
+
+```bash
+sudo docker build -t alcon -f Dockerfile_gpu .
 ```
 
 少し時間がかかりますが，環境が構築されます．
