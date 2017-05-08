@@ -3,7 +3,15 @@
 ## 準備
 
 * Dockerのインストール
-* Dockerfileのダウンロード
+    * こちらからダウンロードしてインストール https://www.docker.com/community-edition
+* Dockerfileやサンプルコードのダウンロード
+```bash
+git clone https://github.com/yasutomo57jp/alcon2017prmu
+```
+
+## Dockerのインストール
+
+
 
 ## コンテナの作成
 
@@ -26,8 +34,8 @@ sudo docker run --rm -it -v `pwd`:/alcon /bin/bash
 * /alcon にマウントされているので，以下のようにして実行します
 
 ```bash
-cd /alcon
-python main.py 1 path/to/dataset
+cd /alcon/python
+python main.py 1 ../dataset
 ```
 
 ## 実行 (C++)
@@ -41,9 +49,9 @@ sudo docker run --rm -it -v `pwd`:/alcon /bin/bash
 * /alcon にマウントされているので，以下のようにして実行します
 
 ```bash
-cd /alcon
+cd /alcon/cpp
 make
-./main 1 path/to/dataset
+./main 1 ../dataset
 ```
 
 
