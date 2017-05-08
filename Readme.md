@@ -9,10 +9,6 @@
 git clone https://github.com/yasutomo57jp/alcon2017prmu
 ```
 
-## Dockerのインストール
-
-
-
 ## コンテナの作成
 
 Dockerfileのあるディレクトリで以下のコマンドを実行
