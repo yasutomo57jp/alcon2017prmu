@@ -4,6 +4,7 @@
 
 * Dockerのインストール
     * こちらからダウンロードしてインストール https://www.docker.com/community-edition
+    * GPUを使う場合は nvidia-docker をインストール https://github.com/NVIDIA/nvidia-docker
 * Dockerfileやサンプルコードのダウンロード
 ```bash
 git clone https://github.com/yasutomo57jp/alcon2017prmu
