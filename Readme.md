@@ -9,6 +9,9 @@
 ```bash
 git clone https://github.com/yasutomo57jp/alcon2017prmu
 ```
+* Datasetの準備
+    * 以下のページからデータセットをダウンロード
+         https://github.com/tomomiyazaki/alcon2017prmu_dataset
 
 ## コンテナの作成（GPUなし版）
 
