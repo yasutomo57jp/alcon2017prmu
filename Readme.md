@@ -50,10 +50,15 @@ sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon_gpu /bin/bash
 ```
 
 * /alcon にマウントされているので，以下のようにして実行します
-
+   * まず学習を行います．
 ```bash
 cd /alcon/python
-python main.py 1 ../dataset
+python train.py ../dataset
+```
+   * その後，実行します．
+```bash
+cd /alcon/python
+python main.py ../dataset 1
 ```
 
 ## 実行 (C++)
@@ -75,7 +80,5 @@ sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon_gpu /bin/bash
 ```bash
 cd /alcon/cpp
 make
-./main 1 ../dataset
+./main ../dataset 1
 ```
-
-
