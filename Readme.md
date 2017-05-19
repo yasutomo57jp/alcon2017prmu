@@ -56,7 +56,7 @@ sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon_gpu /bin/bash
    * まず学習を行います．
 ```bash
 cd /alcon/python
-python train.py ../dataset
+python train.py ../dataset 1
 ```
    * その後，実行します．
 ```bash
