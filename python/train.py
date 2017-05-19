@@ -32,8 +32,6 @@ def main(datasetdir,lv):
         code = alcon.ground_truth[bb_id][0]
         if code not in dataset:
             dataset[code] = []
-        if len(dataset[code]) == 5:
-            continue
         img = cv2.imread( img_filename )
         feature = MyAlgorithm.feature_extraction(img)
         dataset[code].append(feature)
