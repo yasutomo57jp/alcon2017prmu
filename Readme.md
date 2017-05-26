@@ -16,6 +16,7 @@ git clone https://github.com/yasutomo57jp/alcon2017prmu
     * 以下のページからデータセットをダウンロード
          https://github.com/tomomiyazaki/alcon2017prmu_dataset
 
+Dockerの使い方については，MIRU2016若手プログラムで発表された，[「バージョン管理で理想の研究生活にコミット」](https://87dc9068-a-62cb3a1a-s-sites.googlegroups.com/site/miru2016hamamatsu/wakate/Wakate-VCS.pdf?attachauth=ANoY7cpB_-uqm2qiDVgP2RVrTmqT-ok9w6gMmzt-G75oWInKX2GmVU9Qu4AxR24TjgEIz0lz588fxMFwuIGXuvAl_md8kDJYT_jltEL6Bz-tZQa5XS0ACAdPZQQ9xZnMw-Ra-03ccAynKgDIK3S7eBRgg20rXVndaCm8K9TQQ4FrriMxgJu5o-mm0meBzdwB5Xp7fBwBbc69iDf4tkHIHX4CcWIj72-r8Ztzng8mCMIPE2ZcfyGcogU%3D&attredirects=0)が参考になります．
 
 ## 実行 (Python)
 
