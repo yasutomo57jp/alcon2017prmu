@@ -21,7 +21,7 @@ git clone https://github.com/yasutomo57jp/alcon2017prmu
 Dockerfileのあるディレクトリで以下のコマンドを実行
 
 ```bash
-sudo docker build -t alcon -f Dockerfile .
+sudo docker build -t alcon:cpu -f Dockerfile .
 ```
 
 少し時間がかかりますが，環境が構築されます．
@@ -33,7 +33,7 @@ GPUが刺さった計算機の場合，こちらを実行すると，GPUを利�
 Dockerfileのあるディレクトリで以下のコマンドを実行
 
 ```bash
-sudo docker build -t alcon_gpu -f Dockerfile_gpu .
+sudo docker build -t alcon:gpu -f Dockerfile_gpu .
 ```
 
 少し時間がかかりますが，環境が構築されます．
@@ -43,13 +43,13 @@ sudo docker build -t alcon_gpu -f Dockerfile_gpu .
 * アルコンのサンプルコードとデータセットを置いたディレクトリで，以下のコマンドを実行するとコンテナが起動します
 
 ```bash
-sudo docker run --rm -it -v `pwd`:/alcon alcon /bin/bash
+sudo docker run --rm -it -v `pwd`:/alcon alcon:cpu /bin/bash
 ```
 
 * GPUを使う場合，以下のコマンドを実行してコンテナを起動させます
 
 ```bash
-sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon_gpu /bin/bash
+sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon:gpu /bin/bash
 ```
 
 * /alcon にマウントされているので，以下のようにして実行します
@@ -69,13 +69,13 @@ python main.py ../dataset 1
 * アルコンのサンプルコードとデータセットを置いたディレクトリで，以下のコマンドを実行するとコンテナが起動します
 
 ```bash
-sudo docker run --rm -it -v `pwd`:/alcon alcon /bin/bash
+sudo docker run --rm -it -v `pwd`:/alcon alcon:cpu /bin/bash
 ```
 
 * GPUを使う場合，以下のコマンドを実行してコンテナを起動させます
 
 ```bash
-sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon_gpu /bin/bash
+sudo nvidia-docker run --rm -it -v `pwd`:/alcon alcon:gpu /bin/bash
 ```
 
 * /alcon にマウントされているので，以下のようにして実行します
