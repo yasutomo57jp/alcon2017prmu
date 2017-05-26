@@ -43,6 +43,15 @@ cd /alcon/python
 python main.py ../dataset 1
 ```
 
+* Pythonのスクリプトを直接実行することもできます．
+```bash
+sudo docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:cpu python main.py dataset 1
+```
+や
+```bash
+sudo nvidia-docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:gpu python main.py dataset 1
+```
+
 ## 実行 (C++)
 
 * アルコンのサンプルコードとデータセットを置いたディレクトリで，以下のコマンドを実行するとコンテナが起動します
