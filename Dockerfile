@@ -4,7 +4,7 @@ MAINTAINER kawanishi
 
 RUN apt update
 RUN apt install -y wget cmake libboost-all-dev
-RUN apt install -y python3 libpython3-dev libpython-dev
+RUN apt install -y python3 python3-pip libpython3-dev libpython-dev
 
 # python install
 RUN pip install numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow keras chainer theano
