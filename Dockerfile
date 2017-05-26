@@ -4,6 +4,7 @@ MAINTAINER kawanishi
 
 RUN apt update
 RUN apt install -y wget cmake libboost-all-dev
+RUN apt install -y python3 libpython3-dev libpython-dev
 
 # opencv install
 RUN apt install -y libopencv-dev
@@ -14,5 +15,6 @@ RUN cd opencv-3.2.0 && mkdir build && cd build && cmake .. && make -j8 && make i
 
 # python install
 RUN pip install numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow keras chainer theano
+RUN pip3 install numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow keras chainer theano
 
 WORKDIR /alcon
