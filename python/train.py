@@ -18,10 +18,10 @@ def main(datasetdir,lv):
     alcon = AlconUtils(datasetdir)
 
     # アノテーションの読み込み
-    fn = "target_lv" + lv + "_samp_5.csv"
+    fn = "target_lv" + lv + "_samp_0.9.csv"
     alcon.load_annotations_target(fn)
 
-    fn = "groundtruth_lv" + lv + "_samp_5.csv"
+    fn = "groundtruth_lv" + lv + "_samp_0.9.csv"
     alcon.load_annotations_ground(fn)
 
     
