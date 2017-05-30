@@ -1,17 +1,22 @@
-FROM nvidia/cuda:cudnn
-MAINTAINER Yasutomo Kawanishi <yasutomo57jp@gmail.com>
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+FROM bvlc/caffe:gpu
 
-RUN apt update --fix-missing && apt install -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.3.11-Linux-x86_64.sh -O ~/miniconda.sh && /bin/bash ~/miniconda.sh -b -p /opt/conda && rm ~/miniconda.sh
-RUN apt install -y curl grep sed dpkg && TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && dpkg -i tini.deb && rm tini.deb
+MAINTAINER kawanishi
 
+RUN apt update
+RUN apt install -y wget cmake libboost-all-dev
+RUN apt install -y python3 python3-pip libpython3-dev libpython-dev
+
+# python install
+RUN pip install numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow-gpu keras chainer theano
+RUN pip3 install numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow-gpu keras chainer theano
+
+# opencv install
 RUN apt install -y libopencv-dev
+RUN apt remove -y libopencv-dev
+RUN wget -O opencv-3.2.0.tar.gz https://github.com/opencv/opencv/archive/3.2.0.tar.gz
+RUN tar zxvf opencv-3.2.0.tar.gz
+RUN cd opencv-3.2.0 && mkdir build && cd build && cmake .. -DWITH_CUDA=off && make -j8 && make install
+RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/local.conf
+RUN ldconfig
 
-ENV PATH=/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-RUN conda create -n alcon python=3.6 anaconda-client
-RUN ["/bin/bash", "-c", "source activate alcon && conda install -y numpy scipy ipython scikit-learn scikit-image matplotlib opencv tensorflow-gpu keras"]
-RUN echo "source activate alcon" >> /etc/profile.d/conda.sh
-
-ENTRYPOINT ["/usr/bin/tini"]
-CMD ["/bin/bash"]
+WORKDIR /alcon
