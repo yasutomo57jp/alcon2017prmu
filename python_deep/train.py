@@ -49,8 +49,6 @@ def main(datasetdir,lv):
     data = np.asarray(data, dtype=np.float)
     labels = np.asarray(labels, dtype=np.int)
     labels_c = keras.utils.to_categorical(labels)
-    print(len(data), len(labels))
-    quit()
 
     # ネットワークの学習
     model = Sequential()
