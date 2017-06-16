@@ -42,21 +42,21 @@ sudo nvidia-docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:gpu /bin/bash
    * まず学習を行います．
 ```bash
 cd /alcon/python
-python train.py ../dataset 1
+python3 train.py ../dataset 1
 ```
    * その後，実行します．
 ```bash
 cd /alcon/python
-python main.py ../dataset 1
+python3 main.py ../dataset 1
 ```
 
 * Pythonのスクリプトを直接実行することもできます．
 ```bash
-sudo docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:cpu python main.py dataset 1
+sudo docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:cpu python3 main.py dataset 1
 ```
 や
 ```bash
-sudo nvidia-docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:gpu python main.py dataset 1
+sudo nvidia-docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:gpu python3 main.py dataset 1
 ```
 
 ## 実行 (C++)
