@@ -27,7 +27,7 @@ def main(datasetdir, lv):
     myalgorithm = MyAlgorithm(datasetdir)
 
     # ターゲットの読み込み
-    fn = "target_lv" + lv + "_test_0.1.csv"
+    fn = os.path.join("lv" + lv, "for_sample", "target_lv" + lv + "_test.csv")
     alcon.load_annotations_target(fn)
 
     
@@ -51,7 +51,7 @@ def main(datasetdir, lv):
 
         
     # 評価
-    fnGround = "groundtruth_lv" + lv + "_test_0.1.csv"
+    fnGround = os.path.join("lv" + lv, "for_sample", "groundtruth_lv" + lv + "_test.csv")
     alcon.load_annotations_ground(fnGround)
     alcon.evaluation( results )
 
