@@ -21,10 +21,10 @@ def main(datasetdir,lv):
     alcon = AlconUtils(datasetdir)
 
     # アノテーションの読み込み
-    fn = "target_lv" + lv + "_samp_0.9.csv"
+    fn = os.path.join("lv" + lv, "1", "target_lv" + lv + "_test.csv")
     alcon.load_annotations_target(fn)
 
-    fn = "groundtruth_lv" + lv + "_samp_0.9.csv"
+    fn = os.path.join("lv" + lv, "1", "groundtruth_lv" + lv + "_test.csv")
     alcon.load_annotations_ground(fn)
 
     # CNNモデルの作成
@@ -50,13 +50,24 @@ def main(datasetdir,lv):
     labels = np.asarray(labels, dtype=np.int)
     labels_c = keras.utils.to_categorical(labels)
 
+    # サンプルをシャッフル
+    idx = list(range(len(data)))
+    np.random.shuffle(idx)
+    data = data[idx]
+    labels = labels[idx]
+    labels_c = labels_c[idx]
+
     # ネットワークの学習
     model = Sequential()
     model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=input_shape))
     model.add(MaxPooling2D(pool_size=(3, 3)))
-    model.add(Conv2D(128, (3, 3), activation='relu'))
+    model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(3, 3)))
+
     model.add(Flatten())
+
+    model.add(Dense(512, activation='relu'))
+    model.add(Dropout(0.5))
     model.add(Dense(512, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(512, activation='relu'))
@@ -66,8 +77,9 @@ def main(datasetdir,lv):
     model.compile(loss=keras.losses.categorical_crossentropy,
                   optimizer=keras.optimizers.Adam(),
                   metrics=['accuracy'])
+    model.summary()
 
-    model.fit(data, labels_c, batch_size=100, epochs=100, verbose=1)
+    model.fit(data, labels_c, batch_size=100, epochs=300, validation_split=0.1, verbose=1)
 
     outputfile = os.path.join(datasetdir, "model.h5")
     classfile = os.path.join(datasetdir, "classes.pkl")

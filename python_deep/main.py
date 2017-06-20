@@ -5,7 +5,7 @@
 以下の様に実行してください
 （path/to/datasetdir は，データセットの場所）
 
-    python main.py path/to/datasetdir
+    python main.py path/to/datasetdir 1
 
 """
 
@@ -27,10 +27,10 @@ def main(datasetdir, lv):
     myalgorithm = MyAlgorithm(datasetdir)
 
     # ターゲットの読み込み
-    fn = "target_lv" + lv + "_test_0.1.csv"
+    fn = os.path.join("lv" + lv, "for_sample", "target_lv" + lv + "_test.csv")
     alcon.load_annotations_target(fn)
 
-    
+
     results = {}
     prev = None
     # １ターゲットずつ認識していくループ
@@ -49,16 +49,16 @@ def main(datasetdir, lv):
         # boundingbox id と紐付けて保存
         results[bb_id] = result
 
-        
+
     # 評価
-    fnGround = "groundtruth_lv" + lv + "_test_0.1.csv"
+    fnGround = os.path.join("lv" + lv, "for_sample", "groundtruth_lv" + lv + "_test.csv")
     alcon.load_annotations_ground(fnGround)
     alcon.evaluation( results )
 
     # ファイルに結果を書き込む
     alcon.write_results( results )
-    
-    
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("usage: python main.py datasetdir lv", file=sys.stderr)

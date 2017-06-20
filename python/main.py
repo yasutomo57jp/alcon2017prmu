@@ -27,17 +27,17 @@ def main(datasetdir, lv):
     myalgorithm = MyAlgorithm(datasetdir)
 
     # ターゲットの読み込み
-    fn = os.path.join("lv" + lv, "for_sample", "target_lv" + lv + "_test.csv")
+    fn = os.path.join("lv" + lv, "1", "target_lv" + lv + "_test.csv")
     alcon.load_annotations_target(fn)
 
-    
+
     results = {}
     prev = None
     # １ターゲットずつ認識していくループ
     for bb_id, target in alcon.targets.items():
         img_file_id, *bb = target
         img_filename = os.path.join(datasetdir, "images", img_file_id+".jpg")
-        
+
         if prev != img_filename:
             # ページ全体の画像
             full_img = cv2.imread(img_filename)
@@ -49,20 +49,20 @@ def main(datasetdir, lv):
         # boundingbox id と紐付けて保存
         results[bb_id] = result
 
-        
+
     # 評価
-    fnGround = os.path.join("lv" + lv, "for_sample", "groundtruth_lv" + lv + "_test.csv")
+    fnGround = os.path.join("lv" + lv, "1", "groundtruth_lv" + lv + "_test.csv")
     alcon.load_annotations_ground(fnGround)
     alcon.evaluation( results )
 
     # ファイルに結果を書き込む
     alcon.write_results( results )
-    
-    
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("usage: python main.py datasetdir lv", file=sys.stderr)
         quit()
 
-    main( sys.argv[1], sys.argv[2] )
+    main(sys.argv[1], sys.argv[2])
 
