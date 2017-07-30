@@ -33,6 +33,11 @@ Dockerの使い方については，MIRU2016若手プログラムで発表され
 ```bash
 sudo docker run --rm -it -v `pwd`:/alcon yasutomo57jp/alcon:cpu /bin/bash
 ```
+注意：上記 -v オプションで，ホストマシンのカレントディレクトリをマウントしていますが，
+Windowsの場合は，デフォルトでは C:\Users 以下しかマウントできないようです．
+C:\Users以下にファイルをコピーした後， -v /c/Users/alcon2017prmu:/alcon のように指定してください．
+
+その他の場所でマウントするやり方は[こちら](https://rominirani.com/docker-on-windows-mounting-host-directories-d96f3f056a2c)に載っています．
 
 * GPUを使う場合，以下のコマンドを実行してコンテナを起動させます
 
